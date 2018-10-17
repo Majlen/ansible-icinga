@@ -15,3 +15,9 @@
     name: icinga2-ido-pgsql
     state: present 
     default_release: stretch-backports
+
+- name: Install IcingaCLI
+  apt:
+    name: icingacli
+    state: present 
+    default_release: stretch-backports
