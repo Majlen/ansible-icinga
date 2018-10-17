@@ -1,23 +1,21 @@
-- name: Install Icinga2
+- name: Install Icinga2 packages
   apt:
-    name: icinga2
+    name: "{{ item }}"
     state: present 
     default_release: stretch-backports
+  with_items:
+    - icinga2
+    - icingaweb2
+    - icinga2-ido-pgsql
+    - icingacli
 
-- name: Install Icingaweb2
-  apt:
-    name: icingaweb2
-    state: present 
-    default_release: stretch-backports
-
-- name: Install Icinga2 IDO PostgreSQL
-  apt:
-    name: icinga2-ido-pgsql
-    state: present 
-    default_release: stretch-backports
-
-- name: Install IcingaCLI
-  apt:
-    name: icingacli
-    state: present 
-    default_release: stretch-backports
+- name: Install PHP extensions
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - php-gd
+    - php-imagick
+    - php-intl
+    - php-pgsql
+  notify: Restart Apache

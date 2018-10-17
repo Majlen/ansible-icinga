@@ -27,3 +27,10 @@
   args:
     creates: /etc/apache2/mods-enabled/php7.0.load
   notify: Restart Apache 
+
+- name: Configure date.timezone in PHP
+  lineinfile:
+    dest: /etc/php/7.0/apache2/php.ini
+    regexp: '^;{,1}date\.timezone ='
+    line: 'date.timezone = Europe/Prague'
+  notify: Restart Apache
