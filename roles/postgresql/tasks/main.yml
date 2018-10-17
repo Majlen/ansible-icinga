@@ -1,1 +1,10 @@
+# Every access to the variable dbpass creates a new password, fact is immutable
+- set_fact:
+    password: "{{ dbpass }}"
+
 - include_tasks: install.yml
+- include_tasks: config.yml
+
+- name: Echo credentials
+  debug:
+    msg: "PostgreSQL credentials: username={{ dbuser }} password={{ password }}"

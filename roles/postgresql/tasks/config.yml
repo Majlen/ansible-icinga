@@ -1,0 +1,16 @@
+- name: Create database
+  postgresql_db:
+    name: "{{ dbname }}"
+    login_unix_socket: /var/run/postgresql
+  become: yes
+  become_user: postgres
+
+- name: Create user
+  postgresql_user:
+    name: "{{ dbuser }}"
+    db: "{{ dbname }}"
+    password: "{{ password }}"
+    no_password_changes: yes
+    login_unix_socket: /var/run/postgresql
+  become: yes
+  become_user: postgres

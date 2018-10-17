@@ -2,3 +2,8 @@
   package:
     name: postgresql
     state: present
+
+- name: Install psycopg2 for PostgreSQL support in Ansible
+  package:
+    name: python-psycopg2
+    state: present
