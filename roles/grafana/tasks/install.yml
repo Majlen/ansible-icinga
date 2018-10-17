@@ -1,0 +1,16 @@
+- name: Add Grafana repository key
+  apt_key:
+    url: https://packagecloud.io/gpg.key
+    state: present
+  
+- name: Add Grafana repository
+  apt_repository:
+    repo: deb https://packagecloud.io/grafana/stable/debian/ stretch main
+    state: present
+    update_cache: yes
+
+- name: Install Grafana
+  package:
+    name: grafana
+    state: present 
+

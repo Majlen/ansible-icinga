@@ -1,0 +1,17 @@
+- name: Install Icinga2
+  apt:
+    name: icinga2
+    state: present 
+    default_release: stretch-backports
+
+- name: Install Icingaweb2
+  apt:
+    name: icingaweb2
+    state: present 
+    default_release: stretch-backports
+
+- name: Install Icinga2 IDO PostgreSQL
+  apt:
+    name: icinga2-ido-pgsql
+    state: present 
+    default_release: stretch-backports
