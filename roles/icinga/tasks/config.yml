@@ -4,30 +4,6 @@
     creates: /etc/apache2/conf-enabled/icingaweb2.conf
   notify: Restart Apache 
 
-- name: Enable mod_rewrite
-  shell: a2enmod rewrite
-  args:
-    creates: /etc/apache2/mods-enabled/rewrite.load
-  notify: Restart Apache 
-
-- name: Disable mod_mpm_event
-  shell: a2dismod mpm_event
-  args:
-    removes: /etc/apache2/mods-enabled/mpm_event.load
-  notify: Restart Apache 
-
-- name: Enable mod_mpm_prefork
-  shell: a2enmod mpm_prefork
-  args:
-    creates: /etc/apache2/mods-enabled/mpm_prefork.load
-  notify: Restart Apache 
-
-- name: Enable mod_php7.0
-  shell: a2enmod php7.0
-  args:
-    creates: /etc/apache2/mods-enabled/php7.0.load
-  notify: Restart Apache 
-
 - name: Configure date.timezone in PHP
   lineinfile:
     dest: /etc/php/7.0/apache2/php.ini

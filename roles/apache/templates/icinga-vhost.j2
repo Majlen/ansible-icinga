@@ -1,0 +1,18 @@
+<VirtualHost *:80>
+        ServerName {{ ansible_fqdn }}
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        RewriteEngine On
+        RewriteRule ^/$ /icingaweb2 [R,L]
+
+        AddOutputFilterByType DEFLATE text/json application/json
+
+        <Location /grafana/>
+                ProxyPass "http://localhost:3000/"
+        </Location>
+</VirtualHost>
+

@@ -1,0 +1,58 @@
+- name: Enable mod_rewrite
+  shell: a2enmod rewrite
+  args:
+    creates: /etc/apache2/mods-enabled/rewrite.load
+  notify: Restart Apache
+
+- name: Disable mod_mpm_event
+  shell: a2dismod mpm_event
+  args:
+    removes: /etc/apache2/mods-enabled/mpm_event.load
+  notify: Restart Apache
+
+- name: Enable mod_mpm_prefork
+  shell: a2enmod mpm_prefork
+  args:
+    creates: /etc/apache2/mods-enabled/mpm_prefork.load
+  notify: Restart Apache
+
+- name: Enable mod_php7.0
+  shell: a2enmod php7.0
+  args:
+    creates: /etc/apache2/mods-enabled/php7.0.load
+  notify: Restart Apache
+
+- name: Enable mod_proxy_http
+  shell: a2enmod proxy_http
+  args:
+    creates: /etc/apache2/mods-enabled/proxy_http.load
+  notify: Restart Apache
+
+- name: Create directory for certificates
+  file:
+    path: /etc/apache2/ssl
+    state: directory
+    owner: root
+    group: root
+    mode: 0600
+
+- name: Copy IcingaWeb2 Apache site
+  template:
+    src: icinga-vhost.j2
+    dest: /etc/apache2/sites-available/icingaweb.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart Apache
+
+- name: Enable IcingaWeb2 site
+  shell: a2ensite icingaweb
+  args:
+    creates: /etc/apache2/sites-enabled/icingaweb.conf
+  notify: Restart Apache
+
+- name: Disable default site
+  shell: a2dissite 000-default
+  args:
+    removes: /etc/apache2/sites-enabled/000-default.conf
+  notify: Restart Apache

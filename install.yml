@@ -2,6 +2,7 @@
   roles:
     - icinga
     - grafana
+    - apache
     - role: postgresql
       dbname: icinga2
       dbuser: icinga2
