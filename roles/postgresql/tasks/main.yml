@@ -8,3 +8,5 @@
 - name: Echo credentials
   debug:
     msg: "PostgreSQL credentials: username={{ dbuser }} password={{ password }}"
+  when: user is changed
+    

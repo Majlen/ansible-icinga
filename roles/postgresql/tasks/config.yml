@@ -14,3 +14,4 @@
     login_unix_socket: /var/run/postgresql
   become: yes
   become_user: postgres
+  register: user
