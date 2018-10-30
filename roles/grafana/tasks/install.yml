@@ -12,5 +12,12 @@
 - name: Install Grafana
   package:
     name: grafana
-    state: present 
+    state: present
 
+- name: Install InfluxDB
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - influxdb
+    - influxdb-client
