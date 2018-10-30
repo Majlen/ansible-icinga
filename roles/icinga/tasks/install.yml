@@ -5,9 +5,10 @@
     default_release: stretch-backports
   with_items:
     - icinga2
-    - icingaweb2
     - icinga2-ido-pgsql
     - icingacli
+    - icingaweb2
+    - icingaweb2-module-monitoring
 
 - name: Install PHP extensions
   package:
@@ -18,4 +19,5 @@
     - php-imagick
     - php-intl
     - php-pgsql
+    - php-curl
   notify: Restart Apache
