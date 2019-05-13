@@ -1,14 +1,15 @@
 - name: Install Icinga2 packages
   apt:
-    name: "{{ item }}"
+    name: "{{ pkgs }}"
     state: present 
     default_release: stretch-backports
-  with_items:
-    - icinga2
-    - icinga2-ido-pgsql
-    - icingacli
-    - icingaweb2
-    - icingaweb2-module-monitoring
+  vars:
+    pkgs:
+      - icinga2
+      - icinga2-ido-pgsql
+      - icingacli
+      - icingaweb2
+      - icingaweb2-module-monitoring
 
 - name: Install PHP extensions
   package:
