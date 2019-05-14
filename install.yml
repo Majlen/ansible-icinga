@@ -4,6 +4,6 @@
     - icinga
     - grafana
     - role: postgresql
-      dbname: icinga2
-      dbuser: icinga2
+      dbname: icingaweb2
+      dbuser: icingaweb2
       dbpass: "{{ lookup('password', '/dev/null length=32') }}"
